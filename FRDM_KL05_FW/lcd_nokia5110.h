@@ -1,20 +1,18 @@
 /**********************************************************
  * This file is a part of the Accident Preventor project  *
  **********************************************************/
- 
- /**
- * @file main.c
+
+/**
+ * @file lcd_nokia5110.h
  * @authors Malysa Justyna, Mazurek Szymon
  * @date Dec 2020
- * @brief File containing the main function. 
+ * @brief File containing declarations for LCD control functions.
  */
+ 
+#include "spi.h"
 
-#include "lcd_nokia5110.h"
+/**
+ * @brief Nokia5110 dispaly initialization.
+ */
+void nokia5110_init(void);
 
-int main()
-{
-    nokia5110_init();
-    while(1)
-    {
-    }
-}
