@@ -217,12 +217,13 @@ static void nokia5110_displayInitialValues(void)
     }
 }
 
-static void noki5110_displayHC_SR04_value(void)
+void nokia5110_displayHC_SR04_value(void)
 {
     nokia5110_setCmdMode();
     SPI_transfer(0x42);                /* set y coursor at 2 byte*/
     delay_ms(1);
     SPI_transfer(0x80);                /* set x coursor at the beginning of the line */
+    delay_ms(1);
     nokia5110_setDataMode();
     
     for(uint8_t i=0; i<HC_SR04_SIZE; i++)
@@ -231,7 +232,7 @@ static void noki5110_displayHC_SR04_value(void)
     }
 }
 
-static void nokia5110_setHundreds(uint8_t digit)
+void nokia5110_setHundreds(uint8_t digit)
 {
     const uint8_t * p_digit = pointers_tab[digit];
     
@@ -245,7 +246,7 @@ static void nokia5110_setHundreds(uint8_t digit)
     }
 }
 
-static void nokia5110_setTens(uint8_t digit)
+void nokia5110_setTens(uint8_t digit)
 {
     const uint8_t * p_digit = pointers_tab[digit];
     
@@ -259,7 +260,7 @@ static void nokia5110_setTens(uint8_t digit)
     }
 }
 
-static void nokia5110_setUnits(uint8_t digit)
+void nokia5110_setUnits(uint8_t digit)
 {
     const uint8_t * p_digit = pointers_tab[digit];
     
@@ -296,8 +297,4 @@ void nokia5110_init(void)
     nokia5110_setDataMode();
     nokia5110_clearDisplay();
     nokia5110_displayInitialValues();
-    nokia5110_setHundreds(3);
-    nokia5110_setTens(2);
-    nokia5110_setUnits(1);
-    noki5110_displayHC_SR04_value();
 }
