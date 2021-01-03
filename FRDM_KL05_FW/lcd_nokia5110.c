@@ -226,10 +226,7 @@ void nokia5110_displayHC_SR04_value(void)
     delay_ms(1);
     nokia5110_setDataMode();
     
-    for(uint8_t i=0; i<HC_SR04_SIZE; i++)
-    {
-        SPI_transfer(HC_SR04_tab[i]);
-    }
+    (void)SPI_DMA_send(HC_SR04_tab, HC_SR04_SIZE);
 }
 
 void nokia5110_setHundreds(uint8_t digit)
@@ -277,6 +274,7 @@ void nokia5110_setUnits(uint8_t digit)
 void nokia5110_init(void)
 {
     SPI_Init();
+    SPI_DMA_Init();
     PORTB->PCR[RST] |= PORT_PCR_MUX(1);    /* Set Pin RST MUX as GPIO */
     PORTB->PCR[DC] |= PORT_PCR_MUX(1);     /* Set Pin DC MUX as GPIO */
     PTB->PDDR |= (1<<RST) | (1<<DC);       /* Set Pin RST and DC as output */

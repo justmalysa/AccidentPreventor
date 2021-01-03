@@ -36,6 +36,11 @@ int main()
         nokia5110_setHundreds(hundred);
         nokia5110_setTens(ten);
         nokia5110_setUnits(unit);
+
+        while(SPI_DMA_isBusy())
+        {
+            __WFI();
+        }
         nokia5110_displayHC_SR04_value();
     }
 }
